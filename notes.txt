@@ -1,0 +1,15 @@
+sudo su
+
+lsof -i
+
+kill xxxxx
+
+
+cd bookify 
+
+git pull origin main
+
+python3 -m pip inslall -r requerments.txt
+
+
+python3 main.py 
