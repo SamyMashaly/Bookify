@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <style>
+        /* General Page Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #fff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: flex-end;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .navbar a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- Top Section: Book Info --- */
+        .book-info-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .book-cover {
+            flex: 0 0 250px;
+        }
+        /* UPDATED: Styles to make the image fit perfectly */
+        .book-cover img {
+            width: 100%;
+            height: auto; /* Maintains aspect ratio */
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        .book-details {
+            flex: 1;
+            text-align: right;
+        }
+
+        .book-details h1 {
+            margin-top: 0;
+            font-size: 28px;
+            color: #2c3e50;
+        }
+
+        .meta-info {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .stars {
+            color: #f1c40f;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .description-label {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .description-text {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* --- Reviews Section --- */
+        .section-title {
+            text-align: left;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .review-card {
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .review-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        /* --- Add Review Form --- */
+        .add-review-container {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .add-review-container h3 {
+            margin-top: 0;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        .form-row label {
+            font-weight: bold;
+        }
+
+        .form-row select {
+            padding: 5px;
+            width: 100px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="advanced_search.html">Advanced Search</a>
+    </nav>
+
+    <div class="container">
+
+        <article class="book-info-card">
+            <div class="book-cover">
+                <img id="book-cover" src="" alt="Book Cover" onerror="this.src='https://via.placeholder.com/250x350?text=No+Image'">
+            </div>
+            
+            <div class="book-details">
+                <h1 id="book-title">Loading...</h1>
+                <div class="meta-info" id="book-author"></div>
+                <div class="meta-info" id="book-category"></div>
+                <div class="stars" id="book-rating"></div>
+                
+                <span class="description-label">Description</span>
+                <p class="description-text" id="book-description">
+                </p>
+            </div>
+        </article>
+
+        <div class="section-title">Reviews</div>
+
+        <div id="reviews-container">
+            <!-- Reviews will be loaded here -->
+        </div>
+
+        <div class="add-review-container">
+            <h3>Add Your Review</h3>
+            
+            <form id="review-form">
+                <div class="form-row">
+                    <label>Name:</label>
+                    <input type="text" id="reviewer-name" placeholder="Your Name" required style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+
+                <div class="form-row">
+                    <label>Rating:</label>
+                    <select id="review-rate">
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </div>
+
+                <div class="form-row" style="display: block; text-align: left;">
+                    <label style="display: block; margin-bottom: 5px;">Comment:</label>
+                    <textarea id="review-text" placeholder="Write your review here..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Review</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="book_details.js"></script>
+
+</body>
+</html>
