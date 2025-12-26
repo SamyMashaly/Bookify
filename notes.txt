@@ -1,5 +1,6 @@
 sudo su
 
+
 lsof -i
 
 kill xxxxx
@@ -9,7 +10,11 @@ cd bookify
 
 git pull origin main
 
-python3 -m pip inslall -r requerments.txt
+python3 -m pip install -r requerments.txt
 
 
 python3 main.py 
+
+
+
+git clone https://github.com/SamyMashaly/Bookify.git
