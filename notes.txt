@@ -1,6 +1,9 @@
 sudo su
 
 
+sudo lsof -i :8000
+
+
 lsof -i
 
 kill xxxxx
